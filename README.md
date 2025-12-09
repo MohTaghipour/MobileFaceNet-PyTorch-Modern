@@ -23,17 +23,20 @@ https://www.kaggle.com/datasets/ntl0601/casia-webface
 For test:
 https://www.kaggle.com/datasets/jessicali9530/lfw-dataset
 
-Change config.py according to your setup.
+1. Update `config.py` according to your setup.
 
-Run train.py. You should see something like this:
+2. Run `train.py`. You should see output similar to the following (depending on your `batch_size` and number of GPUs):
 
 Visible GPUs: [0]
 Loaded 460412 images from 10537 identities.
 Loaded 6000 LFW pairs (10-fold) from pairs.csv
 
 Starting epoch 1/25  (3596 batches total)
- Batch 1/3596 (0.0%)
- Batch 21/3596 (0.6%)
- Batch 41/3596 (1.1%)
- Batch 61/3596 (1.7%)
- Batch 81/3596 (2.3%) 
+Batch 1/3596 (0.0%)
+Batch 21/3596 (0.6%)
+Batch 41/3596 (1.1%)
+Batch 61/3596 (1.7%)
+Batch 81/3596 (2.3%) 
+etc.
+- The numbers may vary depending on your dataset, batch size, and GPU configuration.
+- The progress updates will continue for all batches in each epoch.
