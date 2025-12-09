@@ -5,8 +5,8 @@ import torch
 import torch.nn as nn
 from torch.nn import DataParallel
 import torch.nn.functional as F
-from config import BATCH_SIZE, SAVE_FREQ, RESUME, SAVE_DIR, TEST_FREQ, TOTAL_EPOCH, MODEL_PRE, GPU_IDS
-from config import CASIA_DATA_DIR, LFW_DATA_DIR
+from config import BATCH_SIZE, SAVE_FREQ, RESUME, FINAL_EMBEDDING_SIZE, TEST_FREQ, TOTAL_EPOCH, MODEL_PRE, GPU_IDS
+from config import CASIA_DATA_DIR, LFW_DATA_DIR, SAVE_DIR
 from core import model
 from core.utils import init_log
 from CASIA_loader import CASIA_Face
@@ -47,7 +47,7 @@ def main():
 
     # Model
     net = model.MobileFacenet().cuda()
-    ArcMargin = model.ArcMarginProduct(256, trainset.class_nums).cuda()
+    ArcMargin = model.ArcMarginProduct(FINAL_EMBEDDING_SIZE, trainset.class_nums).cuda()
 
     if RESUME:
         ckpt = torch.load(RESUME)
@@ -66,7 +66,8 @@ def main():
         {'params': prelu_params, 'weight_decay': 0.0}
     ], lr=0.1, momentum=0.9, nesterov=True)
 
-    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer_ft, milestones=[36, 52, 58],  gamma=0.1, last_epoch=-1)
+    milestones = [int(TOTAL_EPOCH * 0.5),int(TOTAL_EPOCH * 0.7),int(TOTAL_EPOCH * 0.85)]    #Reduce LR based on epoch
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer_ft, milestones=milestones, gamma=0.1, last_epoch=-1)
     if multi_gpus:
         net = DataParallel(net)
         ArcMargin = DataParallel(ArcMargin)
@@ -82,11 +83,12 @@ def main():
         start_time = time.time()
         _print(f"\nStarting epoch {epoch}/{TOTAL_EPOCH}  ({num_batches} batches total)")
         for batch_idx, (img, label) in enumerate(trainloader):
-            if batch_idx % 20 == 0: 
+            if batch_idx % 50 == 0: 
                 _print(f" Batch {batch_idx+1}/{num_batches} " f"({(batch_idx+1)/num_batches*100:.1f}%)")
             img, label = img.cuda(non_blocking=True), label.cuda(non_blocking=True)
             optimizer_ft.zero_grad()
             feats = net(img)
+            feats = F.normalize(feats, p=2, dim=1) 
             output = ArcMargin(feats, label)
             loss = criterion(output, label)
             loss.backward()
