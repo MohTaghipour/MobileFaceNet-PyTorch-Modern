@@ -10,7 +10,6 @@ This version includes:
 - Modern project structure
 - Debug fixes
 - New training utilities
-- Better modularization
 
 In order to train use this dataset:
 https://www.kaggle.com/datasets/ntl0601/casia-webface
