@@ -8,6 +8,7 @@ https://github.com/Xiaoccer/MobileFaceNet_Pytorch
 
 Currently it is based on:
 
+- Python 3.12.12
 - CUDA: 12.4
 - PyTorch: 2.5.1
 - torchvision: 0.20.1
@@ -16,7 +17,7 @@ This version includes:
 
 - Full upgrade to PyTorch 2.x
 - Modern project structure
-- Debug fixes
+- Many bug fixes
 - New training utilities
 
 In order to train use this dataset:
