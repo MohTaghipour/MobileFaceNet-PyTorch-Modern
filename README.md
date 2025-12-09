@@ -1,5 +1,8 @@
 This project is based on the original implementation by Xiaoccer:
+
 https://github.com/Xiaoccer/MobileFaceNet_Pytorch
+
+“This project is still under development, so please use it with caution.”
 
 This version includes:
 
