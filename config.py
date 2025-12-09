@@ -1,0 +1,14 @@
+BATCH_SIZE = 128
+SAVE_FREQ = 1
+TEST_FREQ = 1
+TOTAL_EPOCH = 25
+
+RESUME = ''
+SAVE_DIR = './model'
+MODEL_PRE = f'CASIA_B{BATCH_SIZE}_'
+
+
+CASIA_DATA_DIR = '../Datasets/CASIA'
+LFW_DATA_DIR = '../Datasets/LFW'
+
+GPU_IDS = 0
