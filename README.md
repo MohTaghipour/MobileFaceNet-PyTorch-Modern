@@ -1,3 +1,5 @@
+## MobileFaceNet with Modern Pytorch
+
 This project is based on the original implementation by Xiaoccer:
 
 https://github.com/Xiaoccer/MobileFaceNet_Pytorch
@@ -27,23 +29,21 @@ https://www.kaggle.com/datasets/jessicali9530/lfw-dataset
 
 2. Run `train.py`. You should see output similar to the following (depending on your `batch_size` and number of GPUs):
 
-Visible GPUs: [0]
+_Visible GPUs: [0]_
 
-Loaded 460412 images from 10537 identities.
+_Loaded 460412 images from 10537 identities._
 
-Loaded 6000 LFW pairs (10-fold) from pairs.csv
+_Loaded 6000 LFW pairs (10-fold) from pairs.csv_
 
-Starting epoch 1/25  (3596 batches total)
+_Starting epoch 1/25  (3596 batches total)_
 
-Batch 1/3596 (0.0%)
+_Batch 1/3596 (0.0%)_
 
-Batch 21/3596 (0.6%)
+_Batch 21/3596 (0.6%)_
 
-Batch 41/3596 (1.1%)
+_Batch 41/3596 (1.1%)_
 
-Batch 61/3596 (1.7%)
-
-Batch 81/3596 (2.3%) 
+_Batch 61/3596 (1.7%)_
 
 etc.
 - The numbers may vary depending on your dataset, batch size, and GPU configuration.
