@@ -46,5 +46,5 @@ _Batch 41/3596 (1.1%)_
 _Batch 61/3596 (1.7%)_
 
 etc.
-- The numbers may vary depending on your dataset, batch size, and GPU configuration.
-- The progress updates will continue for all batches in each epoch.
+
+# The progress updates will continue for all batches in each epoch.
